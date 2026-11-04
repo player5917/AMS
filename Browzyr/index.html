@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#1238cf">
+	<meta name="description" content="STI Attendance Monitoring System campus portal.">
+	<title>STI Attendance Monitoring System</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<main class="page">
+		<section class="campus-photo" aria-label="Students on campus">
+			<img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=85" alt="Students studying together in a campus library">
+			<div class="photo-label">CAMPUS PORTAL <span>2026 / 2027</span></div>
+			<div class="photo-caption">
+				<p>Every day counts</p>
+				<h2>Here for the moments that move you forward.</h2>
+			</div>
+		</section>
+
+		<section class="portal" aria-labelledby="system-title">
+			<p class="term-label">Your campus, in sync</p>
+			<div class="brand-panel">
+				<img class="brand-mark" src="assets/Student%20Photo.png" alt="ASI logo">
+				<h1 id="system-title"><span>Attendance</span><span>Monitoring</span><span>System</span></h1>
+			</div>
+			<p class="portal-copy">A simpler way to stay connected to your classes, your campus, and the people counting on you.</p>
+			<div class="actions" aria-label="Sign in options">
+				<button class="login-button" type="button" data-role="Student">Student Log in</button>
+				<button class="login-button admin" type="button" data-role="Admin">Admin Log in</button>
+			</div>
+			<footer class="portal-footer"><span>STI</span> Attendance Monitoring System <span aria-hidden="true">·</span> Campus access</footer>
+		</section>
+	</main>
+
+	<dialog aria-labelledby="dialog-title">
+		<div class="dialog-content">
+			<div class="dialog-topline">
+				<div>
+					<p class="dialog-kicker">ASI Campus Portal</p>
+					<h2 id="dialog-title">Welcome back</h2>
+				</div>
+				<button class="dialog-close" type="button" aria-label="Close sign-in dialog">&times;</button>
+			</div>
+			<form class="login-form">
+				<label for="admin-id"><span id="login-id-label">Admin ID</span>
+					<input id="admin-id" name="admin-id" type="text" autocomplete="username" placeholder="Enter your admin ID" required>
+				</label>
+				<label for="password">Password
+					<input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required>
+				</label>
+				<button class="submit-button" type="submit">Continue</button>
+				<p class="form-status" role="status" aria-live="polite"></p>
+			</form>
+		</div>
+	</dialog>
+
+	<main class="dashboard" id="dashboard" hidden>
+		<div class="dashboard-frame">
+			<aside class="dashboard-sidebar" aria-label="Dashboard navigation">
+				<div class="dash-brand"><img src="assets/Student%20Photo.png" alt=""><span>STI<br>ATTENDANCE</span></div>
+				<nav class="dash-nav">
+					<button type="button" aria-current="page" data-target="overview"><span class="nav-icon" aria-hidden="true">⌂</span>Overview</button>
+					<button type="button" data-target="notifications"><span class="nav-icon" aria-hidden="true">♧</span>Notifications</button>
+					<button type="button" data-target="messages"><span class="nav-icon" aria-hidden="true">✉</span>Messages</button>
+					<button type="button" data-target="attendance"><span class="nav-icon" aria-hidden="true">◷</span>Attendance</button>
+					<button type="button" data-target="events"><span class="nav-icon" aria-hidden="true">▦</span>Events</button>
+				</nav>
+				<button class="dash-logout" type="button"><span class="nav-icon" aria-hidden="true">↪</span>Log out</button>
+			</aside>
+
+			<div class="dashboard-main" id="overview">
+				<header class="dashboard-header">
+					<div><h1>Admin dashboard</h1><p>Here’s what’s happening across campus today.</p></div>
+					<div class="header-tools">
+						<button class="quick-trigger" type="button" aria-haspopup="dialog" aria-controls="quick-actions-dialog"><span aria-hidden="true">+</span>Quick actions</button>
+						<input class="search-box" type="search" aria-label="Search dashboard" placeholder="Search dashboard">
+						<button class="icon-button" type="button" aria-label="View notifications" data-target="notifications">♧<span class="notification-dot"></span></button>
+						<div class="admin-chip"><span class="admin-avatar" aria-hidden="true">A</span><span class="admin-profile"><span class="admin-name">Administrator</span><span class="admin-role">Campus admin</span></span></div>
+					</div>
+				</header>
+
+				<section class="welcome-banner" aria-label="Welcome">
+					<div><small>STI ATTENDANCE MONITORING SYSTEM</small><h2>Welcome back, Admin</h2><p>Your campus overview is ready.</p></div>
+					<img class="banner-mark" src="assets/Student%20Photo.png" alt="ASI logo">
+				</section>
+
+				<div class="dashboard-grid">
+					<div class="dashboard-column">
+						<section id="attendance" aria-labelledby="metrics-title">
+							<div class="section-heading"><h2 id="metrics-title">Attendance summary</h2><span style="color:#8b93a5;font-size:9px">Today</span></div>
+							<div class="metric-grid attendance-dates">
+								<div class="date-stat"><span>Recent date</span><strong id="recent-attendance-date">--</strong></div>
+								<div class="date-stat"><span>Present</span><strong id="present-today-count">0</strong></div>
+								<div class="date-stat"><span>Absent today</span><strong id="absent-today-count">0</strong></div>
+								<div class="date-stat"><span>Date today</span><strong id="today-date">--</strong></div>
+							</div>
+							<div class="section-heading"><h2 id="attendance-totals-title">Student totals today</h2></div>
+							<div class="attendance-totals" aria-labelledby="attendance-totals-title">
+								<div class="attendance-total"><span>Present students</span><strong id="total-present-count">0</strong></div>
+								<div class="attendance-total"><span>Absent students</span><strong id="total-absent-count">0</strong></div>
+								<div class="attendance-total"><span>Late students</span><strong id="total-late-count">0</strong></div>
+								<div class="attendance-total combined"><span>Total students</span><strong id="total-students-count">0</strong></div>
+							</div>
+						</section>
+
+						<section id="events" aria-labelledby="events-title">
+							<div class="section-heading"><h2 id="events-title">Ongoing &amp; upcoming activities</h2></div>
+							<div class="content-panel">
+								<div class="event-item"><div class="event-top"><strong>Faculty orientation</strong><span class="event-date">Today · 2:00 PM</span></div><p>Main campus, conference hall</p><span class="event-tag">Ongoing</span></div>
+								<div class="event-item"><div class="event-top"><strong>Student wellness week</strong><span class="event-date">Oct 21 · 9:00 AM</span></div><p>Student center · All students</p><span class="event-tag upcoming">Upcoming</span></div>
+								<div class="event-item"><div class="event-top"><strong>Term planning meeting</strong><span class="event-date">Oct 24 · 1:30 PM</span></div><p>Admin building · Room 204</p><span class="event-tag upcoming">Upcoming</span></div>
+							</div>
+						</section>
+					</div>
+
+					<div class="dashboard-column secondary">
+						<section id="notifications" aria-labelledby="notifications-title">
+							<div class="section-heading"><h2 id="notifications-title">Notifications</h2><button class="mark-read" type="button">Mark read</button></div>
+							<div class="content-panel list-stack">
+								<div class="list-item"><span class="message-unread" aria-hidden="true"></span><div class="item-copy"><strong>Attendance review needed</strong><p>3 student records need approval.</p></div></div>
+								<div class="list-item"><span class="message-unread" aria-hidden="true"></span><div class="item-copy"><strong>New campus announcement</strong><p>Library hours extended this week.</p></div></div>
+								<div class="list-item"><span class="item-copy"><strong>Weekly summary ready</strong><p>Your attendance summary is available.</p></span></div>
+							</div>
+						</section>
+
+						<section id="messages" aria-labelledby="messages-title">
+							<div class="section-heading"><h2 id="messages-title">Messages</h2><button type="button" data-target="messages">View all</button></div>
+							<div class="content-panel list-stack">
+								<div class="list-item"><span class="item-icon" aria-hidden="true">JD</span><div class="item-copy"><strong>Jordan Davis</strong><p>Could you confirm the event schedule?</p></div><span class="message-unread" aria-label="Unread"></span></div>
+								<div class="list-item"><span class="item-icon" aria-hidden="true">MR</span><div class="item-copy"><strong>Mina Reyes</strong><p>Attendance report has been submitted.</p></div></div>
+								<div class="list-item"><span class="item-icon" aria-hidden="true">AC</span><div class="item-copy"><strong>Alex Cruz</strong><p>Thank you for the update.</p></div></div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<dialog class="quick-dialog" id="quick-actions-dialog" aria-labelledby="quick-actions-title">
+		<div class="quick-shell">
+			<header class="quick-heading">
+				<div><p>Admin tools</p><h2 id="quick-actions-title">Quick actions</h2></div>
+				<button class="quick-close" type="button" aria-label="Close quick actions">&times;</button>
+			</header>
+			<div class="quick-layout">
+				<nav class="quick-options" aria-label="Quick actions">
+					<button class="quick-option" type="button" data-action="register" aria-pressed="false"><span class="quick-option-icon" aria-hidden="true">＋</span>Register a student</button>
+					<button class="quick-option" type="button" data-action="view" aria-pressed="false"><span class="quick-option-icon" aria-hidden="true">⌕</span>View student</button>
+					<button class="quick-option" type="button" data-action="attendance" aria-pressed="false"><span class="quick-option-icon" aria-hidden="true">◷</span>Mark attendance</button>
+					<button class="quick-option" type="button" data-action="reports" aria-pressed="false"><span class="quick-option-icon" aria-hidden="true">▤</span>Generate reports</button>
+				</nav>
+				<section class="quick-detail" aria-live="polite">
+					<div class="quick-empty"><span aria-hidden="true">＋</span><p>Choose an action to get started. Your changes stay in this browser session.</p></div>
+				</section>
+			</div>
+		</div>
+	</dialog>
+
+	<script>
+		const signInDialog = document.querySelector("dialog");
+		const dialogTitle = document.querySelector("#dialog-title");
+		const formStatus = document.querySelector(".form-status");
+		const loginForm = document.querySelector(".login-form");
+		const adminIdInput = document.querySelector("#admin-id");
+		const dashboard = document.querySelector("#dashboard");
+		const landingPage = document.querySelector(".page");
+		const adminAccount = { id: "5917", password: "5917" };
+		const quickActionsDialog = document.querySelector("#quick-actions-dialog");
+		const quickDetail = document.querySelector(".quick-detail");
+		const quickActionsButton = document.querySelector(".quick-trigger");
+		const studentStorageKey = "sti-attendance-students";
+		let currentUser = null;
+		let students = [];
+		const attendanceRecords = [];
+
+		try {
+			const savedStudents = JSON.parse(localStorage.getItem(studentStorageKey) || "[]");
+			students = Array.isArray(savedStudents) ? savedStudents : [];
+		} catch {
+			students = [];
+		}
+
+		const quickActionViews = {
+			register: {
+				title: "Register a student",
+				description: "Add a student to this session's attendance list.",
+				form: '<label class="full">Student name<input name="studentName" autocomplete="name" placeholder="Full name" required></label><label>Student ID<input name="studentId" autocomplete="off" placeholder="e.g. STI-2048" required></label><label class="full">Program / section<input name="program" placeholder="e.g. BSIT 2A" required></label><button class="quick-submit" type="submit">Register student</button>'
+			},
+			view: {
+				title: "View student",
+				description: "Look up a student registered during this session.",
+				form: '<label class="full">Student ID<input name="studentId" placeholder="Enter student ID" required></label><button class="quick-submit" type="submit">Find student</button>'
+			},
+			attendance: {
+				title: "Mark attendance",
+				description: "Record an attendance status for a registered student.",
+				form: '<label>Student ID<input name="studentId" placeholder="Enter student ID" required></label><label>Date<input name="attendanceDate" type="date" required></label><label class="full">Status<select name="status"><option>Present</option><option>Late</option><option>Absent</option></select></label><button class="quick-submit" type="submit">Save attendance</button>'
+			},
+			reports: {
+				title: "Generate reports",
+				description: "Download a CSV summary of students and attendance recorded in this session.",
+				form: '<label class="full">Report type<select name="reportType"><option value="attendance">Attendance report</option><option value="students">Student register</option></select></label><button class="quick-submit" type="submit">Generate CSV report</button>'
+			}
+		};
+
+		function showQuickAction(actionName) {
+			const action = quickActionViews[actionName];
+			if (!action) return;
+			document.querySelectorAll(".quick-option").forEach((button) => {
+				button.setAttribute("aria-pressed", String(button.dataset.action === actionName));
+			});
+			quickDetail.innerHTML = `<h3>${action.title}</h3><p>${action.description}</p><form class="quick-form" data-form-action="${actionName}">${action.form}<p class="quick-result" role="status" aria-live="polite"></p></form>`;
+			quickDetail.querySelector("input, select")?.focus();
+		}
+
+		function setQuickResult(form, message) {
+			form.querySelector(".quick-result").textContent = message;
+		}
+
+		function localDateKey(date) {
+			const year = date.getFullYear();
+			const month = String(date.getMonth() + 1).padStart(2, "0");
+			const day = String(date.getDate()).padStart(2, "0");
+			return `${year}-${month}-${day}`;
+		}
+
+		function displayDate(dateKey) {
+			if (!dateKey) return "--";
+			const [year, month, day] = dateKey.split("-").map(Number);
+			return new Date(year, month - 1, day).toLocaleDateString(undefined, { month: "2-digit", day: "2-digit", year: "numeric" });
+		}
+
+		function updateAttendanceSummary() {
+			const todayKey = localDateKey(new Date());
+			const todayRecords = attendanceRecords.filter((record) => record.date === todayKey);
+			const countStatus = (status) => todayRecords.filter((record) => record.status === status).length;
+			const presentCount = countStatus("Present");
+			const absentCount = countStatus("Absent");
+			const lateCount = countStatus("Late");
+			const recentRecord = [...attendanceRecords].sort((first, second) => second.date.localeCompare(first.date))[0];
+
+			document.querySelector("#recent-attendance-date").textContent = recentRecord ? displayDate(recentRecord.date) : "--";
+			document.querySelector("#present-today-count").textContent = presentCount;
+			document.querySelector("#absent-today-count").textContent = absentCount;
+			document.querySelector("#today-date").textContent = displayDate(todayKey);
+			document.querySelector("#total-present-count").textContent = presentCount;
+			document.querySelector("#total-absent-count").textContent = absentCount;
+			document.querySelector("#total-late-count").textContent = lateCount;
+			document.querySelector("#total-students-count").textContent = presentCount + lateCount;
+		}
+
+		updateAttendanceSummary();
+
+		document.querySelectorAll("[data-role]").forEach((button) => {
+			button.addEventListener("click", () => {
+				const role = button.dataset.role;
+				const isAdmin = role === "Admin";
+				dialogTitle.textContent = `${role} sign in`;
+				document.querySelector("#login-id-label").textContent = isAdmin ? "Admin ID" : "Student ID";
+				adminIdInput.placeholder = isAdmin ? "Enter your admin ID" : "Enter your student ID";
+				document.querySelector(".dialog-kicker").textContent = "STI Campus Portal";
+				formStatus.textContent = "";
+				loginForm.reset();
+				signInDialog.dataset.role = role;
+				signInDialog.showModal();
+				adminIdInput.focus();
+			});
+		});
+
+		document.querySelector(".dialog-close").addEventListener("click", () => signInDialog.close());
+
+		signInDialog.addEventListener("click", (event) => {
+			if (event.target === signInDialog) signInDialog.close();
+		});
+
+		loginForm.addEventListener("submit", (event) => {
+			event.preventDefault();
+			const enteredId = adminIdInput.value.trim();
+			const enteredPassword = document.querySelector("#password").value;
+			const role = signInDialog.dataset.role;
+
+			if (role === "Admin") {
+				if (enteredId !== adminAccount.id || enteredPassword !== adminAccount.password) {
+					formStatus.textContent = "Admin ID or password is incorrect.";
+					return;
+				}
+				currentUser = { role: "Admin", name: "Admin" };
+			} else {
+				const student = students.find((account) => account.id.toLowerCase() === enteredId.toLowerCase() && account.password === enteredPassword);
+				if (!student) {
+					formStatus.textContent = "Student ID or password is incorrect.";
+					return;
+				}
+				currentUser = { role: "Student", name: student.name };
+			}
+
+			formStatus.textContent = "";
+			signInDialog.close();
+			landingPage.hidden = true;
+			dashboard.hidden = false;
+			quickActionsButton.hidden = currentUser.role !== "Admin";
+			dashboard.querySelector(".dashboard-header h1").textContent = `${currentUser.role} dashboard`;
+			dashboard.querySelector(".dashboard-header p").textContent = currentUser.role === "Admin" ? "Here’s what’s happening across campus today." : `Welcome back, ${currentUser.name}. Here’s your campus overview.`;
+			dashboard.querySelector(".welcome-banner h2").textContent = `Welcome back, ${currentUser.name}`;
+			dashboard.querySelector(".admin-chip").setAttribute("aria-label", `${currentUser.name}, ${currentUser.role} account`);
+			dashboard.querySelector(".admin-avatar").textContent = currentUser.name.trim().charAt(0).toUpperCase();
+			dashboard.querySelector(".admin-name").textContent = currentUser.name;
+			dashboard.querySelector(".admin-role").textContent = currentUser.role === "Admin" ? "Campus admin" : "Student account";
+			document.body.classList.add("dashboard-active");
+		});
+
+		document.querySelector(".dash-logout").addEventListener("click", () => {
+			dashboard.hidden = true;
+			landingPage.hidden = false;
+			quickActionsButton.hidden = false;
+			currentUser = null;
+			document.body.classList.remove("dashboard-active");
+		});
+
+		document.querySelectorAll("[data-target]").forEach((control) => {
+			control.addEventListener("click", () => {
+				const targetId = control.dataset.target;
+				const target = document.getElementById(targetId);
+				target?.scrollIntoView({ behavior: "smooth", block: "start" });
+				document.querySelectorAll(".dash-nav button").forEach((button) => {
+					if (button.dataset.target === targetId) button.setAttribute("aria-current", "page");
+					else button.removeAttribute("aria-current");
+				});
+			});
+		});
+
+		document.querySelector(".mark-read").addEventListener("click", () => {
+			document.querySelectorAll("#notifications .message-unread").forEach((indicator) => indicator.remove());
+		});
+
+		document.querySelector(".quick-trigger").addEventListener("click", () => {
+			if (currentUser?.role !== "Admin") return;
+			quickActionsDialog.showModal();
+			document.querySelector(".quick-option").focus();
+		});
+
+		document.querySelector(".quick-close").addEventListener("click", () => quickActionsDialog.close());
+
+		quickActionsDialog.addEventListener("click", (event) => {
+			if (event.target === quickActionsDialog) quickActionsDialog.close();
+		});
+
+		document.querySelectorAll(".quick-option").forEach((button) => {
+			button.addEventListener("click", () => showQuickAction(button.dataset.action));
+		});
+
+		quickDetail.addEventListener("submit", (event) => {
+			event.preventDefault();
+			if (currentUser?.role !== "Admin") return;
+			const form = event.target;
+			const fields = new FormData(form);
+			const action = form.dataset.formAction;
+
+			if (action === "register") {
+				const studentId = fields.get("studentId").trim();
+				if (students.some((student) => student.id.toLowerCase() === studentId.toLowerCase())) {
+					setQuickResult(form, "That student ID is already registered.");
+					return;
+				}
+				const student = { id: studentId, password: studentId, name: fields.get("studentName").trim(), program: fields.get("program").trim() };
+				students.push(student);
+				try {
+					localStorage.setItem(studentStorageKey, JSON.stringify(students));
+				} catch {
+					students.pop();
+					setQuickResult(form, "Unable to save the account in this browser. Storage may be unavailable.");
+					return;
+				}
+				form.reset();
+				setQuickResult(form, "Student account created. They can now sign in with this ID and password.");
+				return;
+			}
+
+			if (action === "view") {
+				const student = students.find((record) => record.id.toLowerCase() === fields.get("studentId").trim().toLowerCase());
+				setQuickResult(form, student ? `${student.name} · ${student.id} · ${student.program}` : "No matching student in this session. Register the student first.");
+				return;
+			}
+
+			if (action === "attendance") {
+				const student = students.find((record) => record.id.toLowerCase() === fields.get("studentId").trim().toLowerCase());
+				if (!student) {
+					setQuickResult(form, "Student not found. Register the student first.");
+					return;
+				}
+				const recordDate = fields.get("attendanceDate");
+				const existingRecord = attendanceRecords.find((record) => record.id === student.id && record.date === recordDate);
+				if (existingRecord) existingRecord.status = fields.get("status");
+				else attendanceRecords.push({ id: student.id, name: student.name, date: recordDate, status: fields.get("status") });
+				updateAttendanceSummary();
+				setQuickResult(form, `${student.name} marked ${fields.get("status").toLowerCase()} for ${recordDate}.`);
+				return;
+			}
+
+			if (action === "reports") {
+				const reportType = fields.get("reportType");
+				const rows = reportType === "students"
+					? [["Student ID", "Name", "Program / section"], ...students.map((student) => [student.id, student.name, student.program])]
+					: [["Student ID", "Name", "Date", "Status"], ...attendanceRecords.map((record) => [record.id, record.name, record.date, record.status])];
+				const csv = rows.map((row) => row.map((value) => `"${String(value).replaceAll('"', '""')}"`).join(",")).join("\r\n");
+				const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+				const download = document.createElement("a");
+				download.href = url;
+				download.download = `${reportType}-report.csv`;
+				download.click();
+				window.setTimeout(() => URL.revokeObjectURL(url), 60000);
+				setQuickResult(form, `Report generated with ${rows.length - 1} ${reportType === "students" ? "student" : "attendance"} record(s).`);
+			}
+		});
+	</script>
+</body>
+</html>
